@@ -147,6 +147,7 @@
     border-radius: 3px;
   }
 
+  // 5 slides, 4s each = 20s cycle
   &__slide {
     position: absolute;
     inset: 0;
@@ -154,10 +155,12 @@
     height: 100%;
     object-fit: cover;
     opacity: 0;
-    transition: opacity 0.8s ease;
+    animation: sponsor-slide-fade 20s infinite;
 
-    &.active {
-      opacity: 1;
+    @for $i from 1 through 5 {
+      &:nth-child(#{$i}) {
+        animation-delay: #{($i - 1) * 4}s;
+      }
     }
   }
 }
@@ -184,6 +187,14 @@
     margin-bottom: 24px;
     text-align: center;
   }
+}
+
+@keyframes sponsor-slide-fade {
+  0%   { opacity: 0; }
+  4%   { opacity: 1; }
+  16%  { opacity: 1; }
+  20%  { opacity: 0; }
+  100% { opacity: 0; }
 }
 
 @keyframes float-hat {
