@@ -53,15 +53,12 @@ permalink: /world/2026/faq
   </div>
 </section>
 
-    <button id="backToTop" aria-label="Back to top" onclick="scrollToTop()">↑</button>
+    <a href="#top" id="backToTop" aria-label="Back to top">↑</a>
     {% include world/2026/components/footer.html %}
   </div>
 </div>
 
 <script>
-  function scrollToTop() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
   window.addEventListener('scroll', function() {
     document.getElementById('backToTop').classList.toggle('show', window.scrollY > 300);
   });
