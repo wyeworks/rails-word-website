@@ -1,4 +1,5 @@
 // FAQ page — Rails World 2026
+// Tabs via minimal JS (class toggle) + CSS-only accordion (checkboxes)
 // Accordion base styles are in common/_accordion.scss
 
 .faq-page {
@@ -34,40 +35,41 @@
   font-size: 24px;
   line-height: 1;
   font-weight: $font-weight-500;
-  color: $white;
-  background: rgba($black, 0.5);
+  color: rgba($white, 0.5);
+  background: rgba($black, 0.3);
   border: none;
   cursor: pointer;
   text-decoration: none;
   white-space: nowrap;
   position: relative;
+  transition: color 0.2s ease, background 0.2s ease;
 
-  // Outer neon — top & sides only (no bottom glow so the tab blends with the box)
+  // Dim neon — top & sides only (no bottom glow so the tab blends with the box)
   box-shadow:
-     4px  0   8px rgba(#FD8B00, 1),
-    -4px  0   8px rgba(#3C51ED, 1),
-     0   -4px 8px rgba(#FF000B, 1);
+     4px  0   8px rgba(#FD8B00, 0.4),
+    -4px  0   8px rgba(#3C51ED, 0.4),
+     0   -4px 8px rgba(#FF000B, 0.4);
 
-  // Inner glow + thin white border — top & sides only
+  // Inner glow + thin border — top & sides only
   &::after {
     content: "";
     position: absolute;
     inset: 0;
     border-radius: 3px 3px 0 0;
-    border: 1px solid rgba(217, 217, 217, 1);
+    border: 1px solid rgba(217, 217, 217, 0.4);
     border-bottom: none;
     pointer-events: none;
     box-shadow:
-      inset -5px 0    12px rgba(#FD8B00, 1),
-      inset  5px 0    12px rgba(#3C51ED, 1),
-      inset  0   5px  12px rgba(#FF000B, 1);
+      inset -5px 0    12px rgba(#FD8B00, 0.4),
+      inset  5px 0    12px rgba(#3C51ED, 0.4),
+      inset  0   5px  12px rgba(#FF000B, 0.4);
   }
 
   &--contact-mobile {
     display: none;
   }
 
-  // "Still got q's?" — plain white border only, no neon; same hover as .btn-secondary
+  // "Still got q's?" — plain white border only, no neon
   &--contact {
     box-shadow: none;
 
@@ -80,6 +82,25 @@
     &:hover {
       background: rgba(217, 217, 217, 1);
       color: #0d0d0d;
+    }
+  }
+
+  // Active tab — full brightness neon
+  &--active {
+    color: $white;
+    background: rgba($black, 0.5);
+
+    box-shadow:
+       4px  0   8px rgba(#FD8B00, 1),
+      -4px  0   8px rgba(#3C51ED, 1),
+       0   -4px 8px rgba(#FF000B, 1);
+
+    &::after {
+      border-color: rgba(217, 217, 217, 1);
+      box-shadow:
+        inset -5px 0    12px rgba(#FD8B00, 1),
+        inset  5px 0    12px rgba(#3C51ED, 1),
+        inset  0   5px  12px rgba(#FF000B, 1);
     }
   }
 }
@@ -122,6 +143,10 @@
 
     &::after {
       border-radius: 3px;
+      border-bottom: 1px solid rgba(217, 217, 217, 0.4);
+    }
+
+    &--active::after {
       border-bottom: 1px solid rgba(217, 217, 217, 1);
     }
 
@@ -143,6 +168,6 @@
   // Content box: full border-radius + spacing from tabs
   .faq-content-box {
     border-radius: 16px;
-    margin-top: 24px;
+    margin-top: 8px;
   }
 }

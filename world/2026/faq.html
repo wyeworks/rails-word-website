@@ -14,14 +14,10 @@ permalink: /world/2026/faq
 <section class="faq-page">
   <div class="faq-inner">
 
-    <div class="faq-tabs" role="tablist" aria-label="FAQ categories">
+    <div class="faq-tabs">
       {% for category in faq_data %}
         <button
           class="faq-tab{% if forloop.first %} faq-tab--active{% endif %}"
-          role="tab"
-          aria-selected="{% if forloop.first %}true{% else %}false{% endif %}"
-          aria-controls="faq-panel-{{ category.slug }}"
-          id="faq-tab-{{ category.slug }}"
           data-tab="{{ category.slug }}"
         >{{ category.category }}</button>
       {% endfor %}
@@ -32,10 +28,7 @@ permalink: /world/2026/faq
       {% for category in faq_data %}
         <div
           class="faq-panel{% if forloop.first %} faq-panel--active{% endif %}"
-          role="tabpanel"
           id="faq-panel-{{ category.slug }}"
-          aria-labelledby="faq-tab-{{ category.slug }}"
-          {% unless forloop.first %}hidden{% endunless %}
         >
           <ul class="faq-list" role="list">
             {% for item in category.questions %}
@@ -72,33 +65,19 @@ permalink: /world/2026/faq
   window.addEventListener('scroll', function() {
     document.getElementById('backToTop').classList.toggle('show', window.scrollY > 300);
   });
-</script>
 
-<script>
-  // Tab switching
-  document.querySelectorAll('.faq-tab[role="tab"]').forEach(function(tab) {
+  // Tab switching — panels and accordion state managed via class toggles
+  document.querySelectorAll('.faq-tabs .faq-tab[data-tab]').forEach(function(tab) {
     tab.addEventListener('click', function() {
-      var targetSlug = this.dataset.tab;
-
-      document.querySelectorAll('.faq-panel').forEach(function(panel) {
-        panel.querySelectorAll('.faq-toggle:checked').forEach(function(cb) { cb.checked = false; });
-        panel.classList.remove('faq-panel--active');
-        panel.hidden = true;
-      });
-
-      document.querySelectorAll('.faq-tab[role="tab"]').forEach(function(t) {
-        t.classList.remove('faq-tab--active');
-        t.setAttribute('aria-selected', 'false');
-      });
-
+      document.querySelectorAll('.faq-tab--active').forEach(function(t) { t.classList.remove('faq-tab--active'); });
       this.classList.add('faq-tab--active');
-      this.setAttribute('aria-selected', 'true');
 
-      var targetPanel = document.getElementById('faq-panel-' + targetSlug);
-      if (targetPanel) {
-        targetPanel.classList.add('faq-panel--active');
-        targetPanel.hidden = false;
-      }
+      document.querySelectorAll('.faq-panel').forEach(function(p) {
+        p.querySelectorAll('.faq-toggle:checked').forEach(function(cb) { cb.checked = false; });
+        p.classList.remove('faq-panel--active');
+      });
+      var target = document.getElementById('faq-panel-' + this.dataset.tab);
+      if (target) target.classList.add('faq-panel--active');
     });
   });
 </script>
