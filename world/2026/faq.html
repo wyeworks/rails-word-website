@@ -40,20 +40,13 @@ permalink: /world/2026/faq
           <ul class="faq-list" role="list">
             {% for item in category.questions %}
               <li class="faq-item">
-                <button
-                  class="faq-question"
-                  aria-expanded="false"
-                  aria-controls="faq-answer-{{ category.slug }}-{{ forloop.index }}"
-                >
+                <input type="checkbox" id="faq-{{ category.slug }}-{{ forloop.index }}" class="faq-toggle">
+                <label for="faq-{{ category.slug }}-{{ forloop.index }}" class="faq-question">
                   <span>{{ item.question }}</span>
                   <span class="faq-chevron" aria-hidden="true"></span>
-                </button>
-                <div
-                  class="faq-answer"
-                  id="faq-answer-{{ category.slug }}-{{ forloop.index }}"
-                  hidden
-                >
-                  {{ item.answer }}
+                </label>
+                <div class="faq-answer">
+                  <div class="faq-answer__inner">{{ item.answer }}</div>
                 </div>
               </li>
             {% endfor %}
@@ -82,24 +75,13 @@ permalink: /world/2026/faq
 </script>
 
 <script>
-  function closeAllInPanel(panel) {
-    panel.querySelectorAll('.faq-question--open').forEach(function(btn) {
-      btn.classList.remove('faq-question--open');
-      btn.setAttribute('aria-expanded', 'false');
-      var answer = document.getElementById(btn.getAttribute('aria-controls'));
-      if (answer) answer.hidden = true;
-    });
-  }
-
-  // Tab switching — also closes any open accordion in the outgoing panel
+  // Tab switching
   document.querySelectorAll('.faq-tab[role="tab"]').forEach(function(tab) {
     tab.addEventListener('click', function() {
       var targetSlug = this.dataset.tab;
 
       document.querySelectorAll('.faq-panel').forEach(function(panel) {
-        if (panel.classList.contains('faq-panel--active')) {
-          closeAllInPanel(panel);
-        }
+        panel.querySelectorAll('.faq-toggle:checked').forEach(function(cb) { cb.checked = false; });
         panel.classList.remove('faq-panel--active');
         panel.hidden = true;
       });
@@ -116,25 +98,6 @@ permalink: /world/2026/faq
       if (targetPanel) {
         targetPanel.classList.add('faq-panel--active');
         targetPanel.hidden = false;
-      }
-    });
-  });
-
-  // Accordion — only one item open at a time per panel
-  document.querySelectorAll('.faq-question').forEach(function(btn) {
-    btn.addEventListener('click', function() {
-      var expanded = this.getAttribute('aria-expanded') === 'true';
-      var panel = this.closest('.faq-panel');
-
-      // Close all others in this panel first
-      closeAllInPanel(panel);
-
-      // If it was closed, open it; if it was open, leave it closed (toggle off)
-      if (!expanded) {
-        this.setAttribute('aria-expanded', 'true');
-        this.classList.add('faq-question--open');
-        var answer = document.getElementById(this.getAttribute('aria-controls'));
-        if (answer) answer.hidden = false;
       }
     });
   });

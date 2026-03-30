@@ -1,4 +1,11 @@
 // Shared accordion styles — used by FAQ page and RAS FAQ section
+// CSS-only toggle via hidden checkbox (no JS needed)
+
+.faq-toggle {
+  position: absolute;
+  opacity: 0;
+  z-index: -1;
+}
 
 .faq-list {
   list-style: none;
@@ -61,7 +68,46 @@
   transition: transform 0.25s ease, border-top-color 0.2s ease;
 }
 
-.faq-question--open {
+// Answer — hidden by default, revealed when checkbox is checked
+// Uses grid row trick for smooth height animation based on actual content
+.faq-answer {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.2s ease;
+
+  > * {
+    overflow: hidden;
+  }
+
+  &__inner {
+    overflow: hidden;
+    padding: 0 32px;
+    color: rgba($white, 0.85);
+    font-size: 16px;
+    font-weight: $font-weight-400;
+    line-height: 1.6;
+
+    p { margin: 0 0 8px; }
+    p:last-child { margin-bottom: 0; }
+
+    a {
+      color: $white;
+      text-decoration: underline;
+    }
+
+    strong { font-weight: $font-weight-700; }
+
+    // Bottom spacer — lives inside overflow:hidden so it's clipped at 0fr
+    &::after {
+      content: '';
+      display: block;
+      height: 24px;
+    }
+  }
+}
+
+// Checked state — open the accordion item
+.faq-toggle:checked + .faq-question {
   color: $orange;
 
   .faq-chevron {
@@ -70,22 +116,8 @@
   }
 }
 
-.faq-answer {
-  padding: 0 32px 24px;
-  color: rgba($white, 0.85);
-  font-size: 16px;
-  font-weight: $font-weight-400;
-  line-height: 1.6;
-
-  p { margin: 0 0 8px; }
-  p:last-child { margin-bottom: 0; }
-
-  a {
-    color: $white;
-    text-decoration: underline;
-  }
-
-  strong { font-weight: $font-weight-700; }
+.faq-toggle:checked ~ .faq-answer {
+  grid-template-rows: 1fr;
 }
 
 @include media(MobileScreens) {
@@ -94,8 +126,12 @@
     padding: 20px 20px;
   }
 
-  .faq-answer {
-    padding: 0 20px 20px;
+  .faq-answer__inner {
+    padding: 0 20px;
+
+    &::after {
+      height: 20px;
+    }
   }
 
   .faq-item + .faq-item::before {

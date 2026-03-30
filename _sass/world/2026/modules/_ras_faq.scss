@@ -39,7 +39,7 @@
     }
   }
 
-  .faq-question--open {
+  .faq-toggle:checked + .faq-question {
     color: $white;
 
     .faq-chevron {
@@ -47,8 +47,8 @@
     }
   }
 
-  .faq-answer {
-    padding: 0 0 24px;
+  .faq-answer__inner {
+    padding: 0;
   }
 
   // Replace multicolor gradient separator with plain white line
