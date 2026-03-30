@@ -109,28 +109,23 @@
     &:hover { color: $white; }
 
     @include media(MobileAndTabletScreens) {
-      position: relative;
-      z-index: 2;
+      display: none;
     }
   }
 
+  // Horizontal scroll — replaces JS-managed translateX
   &__track-overflow {
     flex: 1;
-    // `clip` clips without creating a scroll container; margin lets the neon glow bleed through
-    overflow: clip;
-    overflow-clip-margin: 20px;
-
-    @include media(MobileAndTabletScreens) {
-      overflow: hidden;
-      padding: 12px 0;
-      margin: -12px 0;
-    }
-  }
-
-  &__track {
     display: flex;
-    // gap and transform set by JS
-    will-change: transform;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    // Horizontal padding gives neon glow breathing room
+    padding: 12px 20px;
+
+    // Hide scrollbar
+    scrollbar-width: none;
+    &::-webkit-scrollbar { display: none; }
 
     .speaker-card {
       flex: 0 0 200px;
