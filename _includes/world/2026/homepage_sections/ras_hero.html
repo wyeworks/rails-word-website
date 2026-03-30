@@ -9,7 +9,7 @@
     />
     <div class="ras-hero__carousel">
       <div class="ras-hero__slides">
-        <img src="/assets/world/2026/images/ras/ras-photo-1.png" alt="Rails at Scale event" class="ras-hero__slide active" loading="lazy">
+        <img src="/assets/world/2026/images/ras/ras-photo-1.png" alt="Rails at Scale event" class="ras-hero__slide" loading="lazy">
         <img src="/assets/world/2026/images/ras/ras-photo-2.png" alt="Rails at Scale event" class="ras-hero__slide" loading="lazy">
         <img src="/assets/world/2026/images/ras/ras-photo-3.png" alt="Rails at Scale event" class="ras-hero__slide" loading="lazy">
         <img src="/assets/world/2026/images/ras/ras-photo-4.png" alt="Rails at Scale event" class="ras-hero__slide" loading="lazy">
@@ -41,15 +41,3 @@
     </div>
   </div>
 </section>
-
-<script>
-  (function() {
-    var slides = document.querySelectorAll('.ras-hero__slide');
-    var current = 0;
-    setInterval(function() {
-      slides[current].classList.remove('active');
-      current = (current + 1) % slides.length;
-      slides[current].classList.add('active');
-    }, 4000);
-  })();
-</script>

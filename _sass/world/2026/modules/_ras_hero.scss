@@ -40,6 +40,8 @@
     overflow: hidden;
   }
 
+  // 5 slides, 4s each = 20s cycle. Each slide fades in at its turn.
+  // Timing per slide: 4% fade-in, 16% hold, 4% fade-out = 20% of cycle
   &__slide {
     position: absolute;
     inset: 0;
@@ -47,10 +49,12 @@
     height: 100%;
     object-fit: cover;
     opacity: 0;
-    transition: opacity 0.8s ease;
+    animation: ras-slide-fade 20s infinite;
 
-    &.active {
-      opacity: 1;
+    @for $i from 1 through 5 {
+      &:nth-child(#{$i}) {
+        animation-delay: #{($i - 1) * 4}s;
+      }
     }
   }
 
@@ -139,4 +143,14 @@
       align-self: flex-start;
     }
   }
+}
+
+// 5-slide crossfade: each slide gets 20% of the cycle
+// 0-4% fade in, 4-16% hold, 16-20% fade out, 20-100% hidden
+@keyframes ras-slide-fade {
+  0%   { opacity: 0; }
+  4%   { opacity: 1; }
+  16%  { opacity: 1; }
+  20%  { opacity: 0; }
+  100% { opacity: 0; }
 }
