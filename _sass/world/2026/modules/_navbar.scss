@@ -147,10 +147,21 @@
         transition: transform 0.25s ease, opacity 0.25s ease;
       }
 
-      &--open {
+    }
+
+    // X animation and menu open state driven by aria-expanded (no extra classes needed)
+    .glass-pill:has(.nav-hamburger[aria-expanded="true"]) {
+      .nav-hamburger {
         span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
         span:nth-child(2) { opacity: 0; }
         span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+      }
+
+      .nav-mobile-menu {
+        max-height: 600px;
+        opacity: 1;
+        transform: translateY(0);
+        padding-bottom: 24px;
       }
     }
 
@@ -162,13 +173,6 @@
       transform: translateY(-8px);
       transition: max-height 0.35s ease, opacity 0.25s ease, transform 0.25s ease;
       padding: 0 20px 0;
-
-      &--open {
-        max-height: 600px;
-        opacity: 1;
-        transform: translateY(0);
-        padding-bottom: 24px;
-      }
 
       ul {
         list-style: none;
