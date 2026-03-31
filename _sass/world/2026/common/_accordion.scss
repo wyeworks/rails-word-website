@@ -71,18 +71,19 @@
 }
 
 .faq-answer {
-  max-height: 0;
-  overflow: hidden;
+  display: grid;
+  grid-template-rows: 0fr;
   opacity: 0;
-  transition: max-height 0.35s ease, opacity 0.2s ease;
+  transition: grid-template-rows 0.3s ease, opacity 0.2s ease;
 
   &--open {
-    max-height: 600px;
+    grid-template-rows: 1fr;
     opacity: 1;
   }
 
   &__inner {
-    padding: 0 32px 24px;
+    overflow: hidden;
+    padding: 0 32px;
     color: rgba($white, 0.85);
     font-size: 16px;
     font-weight: $font-weight-400;
@@ -97,6 +98,14 @@
     }
 
     strong { font-weight: $font-weight-600; }
+
+    // ::after spacer instead of padding-bottom so it animates smoothly
+    // inside overflow:hidden (padding-bottom gets clipped at 0fr)
+    &::after {
+      content: '';
+      display: block;
+      height: 24px;
+    }
   }
 }
 
@@ -107,7 +116,11 @@
   }
 
   .faq-answer__inner {
-    padding: 0 20px 20px;
+    padding: 0 20px;
+
+    &::after {
+      height: 20px;
+    }
   }
 
   .faq-item + .faq-item::before {
