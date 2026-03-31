@@ -20,7 +20,7 @@
     font-size: 20px;
     line-height: 1;
     letter-spacing: normal;
-    font-weight: $font-weight-700;
+    font-weight: $font-weight-600;
     color: $white;
     background: transparent;
     margin: 0;
@@ -32,6 +32,11 @@
     border: 1px solid rgba(217, 217, 217, 1);
     border-radius: 3px;
     @include neon-glow;
+
+    @include media(MobileAndTabletScreens) {
+      width: 100%;
+      justify-content: center;
+    }
   }
 
   &__see-all {
@@ -54,6 +59,28 @@
       color: $black;
       border-color: $off-white;
     }
+
+    &--desktop {
+      @include media(MobileAndTabletScreens) {
+        display: none;
+      }
+    }
+
+    &--mobile {
+      @include media(MobileAndTabletScreens) {
+        display: inline-flex;
+      }
+    }
+  }
+
+  &__see-all-row {
+    display: none;
+
+    @include media(MobileAndTabletScreens) {
+      display: flex;
+      justify-content: center;
+      margin-top: 32px;
+    }
   }
 
   &__track-wrapper {
@@ -63,6 +90,10 @@
     display: flex;
     align-items: center;
     gap: 16px;
+
+    @include media(MobileAndTabletScreens) {
+      gap: 0;
+    }
   }
 
   &__arrow {
@@ -84,7 +115,10 @@
 
     &:hover { color: $white; }
 
-    @include media(MobileAndTabletScreens) { display: none; }
+    @include media(MobileAndTabletScreens) {
+      position: relative;
+      z-index: 2;
+    }
   }
 
   &__track-overflow {
@@ -92,6 +126,12 @@
     // `clip` clips without creating a scroll container; margin lets the neon glow bleed through
     overflow: clip;
     overflow-clip-margin: 20px;
+
+    @include media(MobileAndTabletScreens) {
+      overflow: hidden;
+      padding: 12px 0;
+      margin: -12px 0;
+    }
   }
 
   &__track {

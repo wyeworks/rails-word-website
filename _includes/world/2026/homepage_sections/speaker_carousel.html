@@ -6,7 +6,7 @@
   <div class="speaker-carousel-section__header">
     <div class="speaker-carousel-section__header-group">
       <p class="speaker-carousel-section__title">Meet this year's speakers</p>
-      <a href="/world/2026/speakers" class="speaker-carousel-section__see-all">See all</a>
+      <a href="/world/2026/speakers" class="speaker-carousel-section__see-all speaker-carousel-section__see-all--desktop">See all</a>
     </div>
   </div>
 
@@ -31,6 +31,9 @@
       </div>
 
       <button class="speaker-carousel-section__arrow" id="carousel-right-2026" aria-label="Next speakers">&#8250;</button>
+    </div>
+    <div class="speaker-carousel-section__see-all-row">
+      <a href="/world/2026/speakers" class="speaker-carousel-section__see-all speaker-carousel-section__see-all--mobile">See all</a>
     </div>
   {% else %}
     <div class="speaker-carousel-section__track-wrapper">
@@ -58,21 +61,39 @@
     });
 
     // ── 2. Compute layout ───────────────────────────────────────────────
-    var CARD_W  = 200;
-    var VISIBLE = 4;
-    var offset  = 0;
-    var step    = 0;
+    var offset = 0;
+    var step   = 0;
+    var MOBILE_BP = 700;
 
     function setup() {
-      var w   = overflow.offsetWidth;
-      var gap = Math.floor((w - VISIBLE * CARD_W) / (VISIBLE - 1));
-      gap     = Math.max(12, gap);
-      step    = CARD_W + gap;
-      track.style.columnGap = gap + 'px';
+      var w      = overflow.offsetWidth;
+      var mobile = window.innerWidth <= MOBILE_BP;
 
-      // Add the arrow gap so cards are visually centered between both arrows
-      var arrowGap = parseInt(getComputedStyle(overflow.parentElement).gap) || 16;
-      offset = n * step + arrowGap;
+      if (mobile) {
+        var cardW = w - 40;
+        var mobileGap = 50;
+        step = cardW + mobileGap;
+        track.style.columnGap = mobileGap + 'px';
+        Array.from(track.children).forEach(function(c) {
+          c.style.flex  = '0 0 ' + cardW + 'px';
+          c.style.width = cardW + 'px';
+        });
+        offset = n * step;
+      } else {
+        var CARD_W  = 200;
+        var VISIBLE = 4;
+        var gap = Math.floor((w - VISIBLE * CARD_W) / (VISIBLE - 1));
+        gap     = Math.max(12, gap);
+        step    = CARD_W + gap;
+        track.style.columnGap = gap + 'px';
+        Array.from(track.children).forEach(function(c) {
+          c.style.flex  = '';
+          c.style.width = '';
+        });
+        var arrowGap = parseInt(getComputedStyle(overflow.parentElement).gap) || 16;
+        offset = n * step + arrowGap;
+      }
+
       track.style.transition = 'none';
       track.style.transform  = 'translateX(' + (-offset) + 'px)';
     }

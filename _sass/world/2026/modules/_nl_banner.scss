@@ -49,13 +49,17 @@
 
   &__text {
     flex: 0 1 700px;
+
+    @include media(MobileAndTabletScreens) {
+      flex: none;
+    }
   }
 
   &__title {
     font-size: 30px;
     line-height: 30px;
     letter-spacing: normal;
-    font-weight: $font-weight-700;
+    font-weight: $font-weight-600;
     color: $white;
     margin-bottom: 12px;
   }
@@ -63,11 +67,12 @@
   &__subtitle {
     font-size: 18px;
     line-height: 25px;
+    letter-spacing: -0.02em;
     color: $off-white;
     font-weight: $font-weight-400;
 
     strong {
-      font-weight: $font-weight-700;
+      font-weight: $font-weight-600;
       color: $white;
     }
   }
@@ -95,11 +100,11 @@
     }
 
     @include media(MobileAndTabletScreens) {
-      width: 100%;
-      align-self: auto;
+      align-self: stretch;
       margin: 0;
       padding: 16px 24px;
       text-align: center;
+      white-space: normal;
     }
   }
 }

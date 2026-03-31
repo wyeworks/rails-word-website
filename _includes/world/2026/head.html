@@ -61,9 +61,14 @@
   <link rel="icon" href="/assets/images/favicon.ico" />
   <link rel="apple-touch-icon" type="image/png" href="/assets/images/apple-touch-icon.png" />
 
-  <!-- Clash Grotesk font via Bunny Fonts (open source alternative) -->
-  <link rel="preconnect" href="https://fonts.bunny.net">
-  <link href="https://fonts.bunny.net/css?family=clash-grotesk:400,500,600,700&display=swap" rel="stylesheet">
+  <!-- Preload LCP image (hero logo on homepage) -->
+  {% if page.url == '/world/2026/' or page.url == '/world/2026' %}
+  <link rel="preload" href="/assets/world/2026/logos/logo.webp" as="image" type="image/webp" fetchpriority="high">
+  {% endif %}
+
+  <!-- Clash Grotesk via Fontshare CDN (ITF FFL license permits API usage) -->
+  <link rel="preconnect" href="https://api.fontshare.com">
+  <link href="https://api.fontshare.com/v2/css?f[]=clash-grotesk@400,500,600,700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="/assets/css/world-2026.css" />
   <link rel="canonical" href="{{ url }}" />

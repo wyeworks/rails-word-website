@@ -30,7 +30,7 @@
 .faq-tab {
   padding: 14px 24px;
   border-radius: 3px 3px 0 0;
-  font-family: "clash-grotesk", sans-serif;
+  font-family: "Clash Grotesk", sans-serif;
   font-size: 24px;
   line-height: 1;
   font-weight: $font-weight-500;
@@ -61,6 +61,10 @@
       inset -5px 0    12px rgba(#FD8B00, 1),
       inset  5px 0    12px rgba(#3C51ED, 1),
       inset  0   5px  12px rgba(#FF000B, 1);
+  }
+
+  &--contact-mobile {
+    display: none;
   }
 
   // "Still got q's?" — plain white border only, no neon; same hover as .btn-secondary
@@ -94,11 +98,17 @@
 
 // ── Panels ────────────────────────────────────────────────────────────────────
 
+@keyframes faq-panel-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
 .faq-panel {
   display: none;
 
   &--active {
     display: block;
+    animation: faq-panel-in 0.2s ease;
   }
 }
 
@@ -106,6 +116,39 @@
 
 @include media(MobileScreens) {
   .faq-page {
-    padding: 100px 16px 60px;
+    padding: 40px 16px 60px;
+  }
+}
+
+@include media(MobileAndTabletScreens) {
+  // Tabs: full border on all sides (no folder effect)
+  .faq-tab {
+    border-radius: 3px;
+    font-size: 18px;
+
+    &::after {
+      border-radius: 3px;
+      border-bottom: 1px solid rgba(217, 217, 217, 1);
+    }
+
+    &--contact-desktop {
+      display: none;
+    }
+
+    &--contact-mobile {
+      display: inline-block;
+      margin-top: 16px;
+      border-radius: 3px;
+
+      &::after {
+        border-bottom: 2px solid $white;
+      }
+    }
+  }
+
+  // Content box: full border-radius + spacing from tabs
+  .faq-content-box {
+    border-radius: 16px;
+    margin-top: 24px;
   }
 }

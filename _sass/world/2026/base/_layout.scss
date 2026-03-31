@@ -1,5 +1,5 @@
 body {
-  font-family: "clash-grotesk", "ClashGrotesk-Variable", sans-serif;
+  font-family: "Clash Grotesk", sans-serif;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -14,6 +14,10 @@ body {
   width: 100%;
   min-height: 100vh;
   background-image: url("/assets/world/2026/images/bg.png");
+  background-image: image-set(
+    url("/assets/world/2026/images/bg.webp") type("image/webp"),
+    url("/assets/world/2026/images/bg.png")  type("image/png")
+  );
   background-size: cover;
   background-position: center top;
   background-repeat: no-repeat;

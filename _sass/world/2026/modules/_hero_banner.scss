@@ -35,7 +35,7 @@
     h1 {
       font-size: 60px;
       line-height: 60px;
-      font-weight: $font-weight-700;
+      font-weight: $font-weight-600;
       letter-spacing: normal;
       margin-bottom: 24px;
 
@@ -60,7 +60,7 @@
 
   .hero-cactus {
     position: absolute;
-    left: 47%;
+    left: 43%;
     top: -54px;
     height: 210px;
     width: auto;
@@ -80,7 +80,6 @@
     @include media(MobileAndTabletScreens) {
       flex: unset;
       width: 100%;
-      max-width: 400px;
     }
 
     .logo-full {

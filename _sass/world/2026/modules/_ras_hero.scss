@@ -3,6 +3,15 @@
   grid-template-columns: 584px 1fr;
   gap: 98px;
   padding: 60px 110px 80px;
+  max-width: 1482px;
+  margin-left: auto;
+  margin-right: auto;
+
+  @include media(MobileAndTabletScreens) {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding: 40px 24px 60px;
+  }
 
   &__left {
     display: flex;
@@ -20,6 +29,11 @@
     height: 666px;
     margin-top: 120px;
     position: relative;
+
+    @include media(MobileAndTabletScreens) {
+      height: 380px;
+      margin-top: 24px;
+    }
   }
 
   &__slides {
@@ -48,6 +62,10 @@
     flex-direction: column;
     gap: 24px;
     padding-top: 75px;
+
+    @include media(MobileAndTabletScreens) {
+      padding-top: 0;
+    }
   }
 
   &__tags {
@@ -64,6 +82,11 @@
     color: white;
     text-transform: none;
     letter-spacing: 0;
+
+    @include media(MobileAndTabletScreens) {
+      font-size: 32px;
+      line-height: 1.1;
+    }
   }
 
   &__body {
@@ -95,8 +118,11 @@
 
 .ras-apply-box {
   @include neon-glow-red;
-  padding: 35px;
+  padding: 56px;
   margin-top: 16px;
+  @include media(MobileAndTabletScreens) {
+      padding: 35px;
+    }
 
   &__content {
     display: flex;
