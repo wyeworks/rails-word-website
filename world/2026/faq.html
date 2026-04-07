@@ -98,11 +98,15 @@ permalink: /world/2026/faq
       document.querySelectorAll('.faq-panel').forEach(function(panel) {
         closeAccordionsInPanel(panel);
         panel.classList.remove('faq-panel--active');
+        panel.hidden = true;
       });
       this.classList.add('faq-tab--active');
       this.setAttribute('aria-selected', 'true');
       var target = document.getElementById('faq-panel-' + this.dataset.tab);
-      if (target) target.classList.add('faq-panel--active');
+      if (target) {
+        target.hidden = false;
+        target.classList.add('faq-panel--active');
+      }
     });
   });
 
