@@ -133,12 +133,27 @@
 
     &::-webkit-scrollbar { display: none; }
 
+    mask-image: linear-gradient(
+      to right,
+      transparent 0px,
+      black 36px,
+      black calc(100% - 36px),
+      transparent 100%
+    );
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent 0px,
+      black 36px,
+      black calc(100% - 36px),
+      transparent 100%
+    );
+
     .speaker-card {
       flex: 0 0 200px;
       scroll-snap-align: start;
 
-      @include media(MobileScreens) {
-        flex: 0 0 calc(100% - 72px);
+      @include media(MobileAndTabletScreens) {
+        flex: 0 0 100%;
       }
     }
   }
