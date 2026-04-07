@@ -7,7 +7,7 @@ permalink: /world/2026/faq
 
 {% assign faq_data = site.data.world['2026'].faq %}
 
-<div class="page-wrapper-2026">
+<div class="page-wrapper-2026" id="top">
   <div id="section-desktop">
     {% include world/2026/components/nav.html %}
 
@@ -67,22 +67,19 @@ permalink: /world/2026/faq
   </div>
 </section>
 
-    <button id="backToTop" aria-label="Back to top" onclick="scrollToTop()">↑</button>
+    <a href="#top" id="backToTop" aria-label="Back to top">↑</a>
     {% include world/2026/components/footer.html %}
   </div>
 </div>
 
 <script>
-  function scrollToTop() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
   window.addEventListener('scroll', function() {
     document.getElementById('backToTop').classList.toggle('show', window.scrollY > 300);
   });
 </script>
 
 <script>
-  function closeAllInPanel(panel) {
+  function closeAccordionsInPanel(panel) {
     panel.querySelectorAll('.faq-question--open').forEach(function(btn) {
       btn.classList.remove('faq-question--open');
       btn.setAttribute('aria-expanded', 'false');
@@ -91,42 +88,32 @@ permalink: /world/2026/faq
     });
   }
 
-  // Tab switching — also closes any open accordion in the outgoing panel
+  // Tab switching
   document.querySelectorAll('.faq-tab[role="tab"]').forEach(function(tab) {
     tab.addEventListener('click', function() {
-      var targetSlug = this.dataset.tab;
-
-      document.querySelectorAll('.faq-panel').forEach(function(panel) {
-        if (panel.classList.contains('faq-panel--active')) {
-          closeAllInPanel(panel);
-        }
-        panel.classList.remove('faq-panel--active');
-      });
-
       document.querySelectorAll('.faq-tab[role="tab"]').forEach(function(t) {
         t.classList.remove('faq-tab--active');
         t.setAttribute('aria-selected', 'false');
       });
-
+      document.querySelectorAll('.faq-panel').forEach(function(panel) {
+        closeAccordionsInPanel(panel);
+        panel.classList.remove('faq-panel--active');
+      });
       this.classList.add('faq-tab--active');
       this.setAttribute('aria-selected', 'true');
-
-      var targetPanel = document.getElementById('faq-panel-' + targetSlug);
-      if (targetPanel) targetPanel.classList.add('faq-panel--active');
+      var target = document.getElementById('faq-panel-' + this.dataset.tab);
+      if (target) target.classList.add('faq-panel--active');
     });
   });
 
-  // Accordion — only one item open at a time per panel
+  // Accordion — one item open at a time per panel
   document.querySelectorAll('.faq-question').forEach(function(btn) {
     btn.addEventListener('click', function() {
-      var expanded = this.getAttribute('aria-expanded') === 'true';
-      var panel = this.closest('.faq-panel');
-
-      closeAllInPanel(panel);
-
-      if (!expanded) {
-        this.setAttribute('aria-expanded', 'true');
+      var isOpen = this.getAttribute('aria-expanded') === 'true';
+      closeAccordionsInPanel(this.closest('.faq-panel'));
+      if (!isOpen) {
         this.classList.add('faq-question--open');
+        this.setAttribute('aria-expanded', 'true');
         var answer = document.getElementById(this.getAttribute('aria-controls'));
         if (answer) { answer.classList.add('faq-answer--open'); answer.setAttribute('aria-hidden', 'false'); }
       }

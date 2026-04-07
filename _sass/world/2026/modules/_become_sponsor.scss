@@ -1,3 +1,11 @@
+@keyframes sponsor-slide-fade {
+  0%    { opacity: 0; }
+  3%    { opacity: 1; }
+  20%   { opacity: 1; }
+  23%   { opacity: 0; }
+  100%  { opacity: 0; }
+}
+
 .become-sponsor {
   padding: 48px 89px 96px;
 
@@ -158,10 +166,19 @@
     height: 100%;
     object-fit: cover;
     opacity: 0;
-    transition: opacity 0.8s ease;
+    animation: sponsor-slide-fade 20s linear infinite;
 
-    &.active {
-      opacity: 1;
+    // Negative delay on slide 1 = already at full opacity when page loads.
+    // Each subsequent slide is offset by 4s (20s / 5 slides).
+    @for $i from 1 through 5 {
+      &:nth-child(#{$i}) { animation-delay: #{($i - 1) * 4 - 0.6}s; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      animation: none;
+      opacity: 0;
+
+      &:first-child { opacity: 1; }
     }
   }
 }
