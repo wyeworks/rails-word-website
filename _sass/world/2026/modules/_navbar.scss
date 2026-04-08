@@ -10,15 +10,26 @@
     width: 100%;
     height: 169px;
     border-radius: 20px;
-    background-color: rgba(0, 0, 0, 0.70);
-    backdrop-filter: blur(10px) saturate(1.4);
-    -webkit-backdrop-filter: blur(10px) saturate(1.4);
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    box-shadow: inset 2px 2px 14.1px -6px rgba(253, 139, 0, 1);
+    position: relative;
+    border: 1px solid rgba(0, 0, 0, 1);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.08),
+      inset 2px 2px 14.1px -6px rgba(253, 139, 0, 1);
     display: flex;
     align-items: center;
     box-sizing: border-box;
     overflow: hidden;
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background-color: rgba(0, 0, 0, 0.38);
+      backdrop-filter: blur(8px) saturate(220%) brightness(0.78);
+      -webkit-backdrop-filter: blur(8px) saturate(220%) brightness(0.78);
+      filter: url(#glass-refraction);
+    }
   }
 
   .nav-inner {
@@ -29,6 +40,8 @@
     align-items: center;
     justify-content: space-between;
     box-sizing: border-box;
+    position: relative;
+    z-index: 1;
   }
 
   .nav-logo {
@@ -93,6 +106,8 @@
 
   .nav-mobile-menu {
     display: none;
+    position: relative;
+    z-index: 1;
   }
 
   // ── Mobile ──────────────────────────────────────────────────────────────────
