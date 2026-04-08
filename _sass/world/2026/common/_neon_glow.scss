@@ -40,6 +40,37 @@
     inset  0   -5px 12px rgba($ras-red, $opacity);
 }
 
+// Shared container setup for carousels where neon overlays sit above slides.
+@mixin neon-overlay-shell($radius: 3px) {
+  position: relative;
+  border-radius: $radius;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+// Shared pseudo-element layer to keep inner glow visible above slide images.
+@mixin neon-overlay-inner-layer($z-index: 2) {
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: $z-index;
+    @include neon-glow-inner;
+  }
+}
+
+@mixin neon-overlay-inner-layer-red($z-index: 2, $opacity: 0.5) {
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: $z-index;
+    @include neon-glow-inner-red($opacity);
+  }
+}
+
 @mixin neon-glow-red {
   border: 1px solid #d9d9d9;
   box-shadow:

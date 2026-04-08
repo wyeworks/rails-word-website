@@ -38,22 +38,10 @@
 
   &__carousel {
     @include neon-glow-outer-red;
+    @include neon-overlay-shell;
+    @include neon-overlay-inner-layer-red;
     height: 666px;
     margin-top: 120px;
-    position: relative;
-    border-radius: 3px;
-    overflow: hidden;
-    isolation: isolate;
-
-    // Keep inner red glow visible above slides.
-    &::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      z-index: 2;
-      @include neon-glow-inner-red;
-    }
 
     @include media(MobileAndTabletScreens) {
       height: 380px;

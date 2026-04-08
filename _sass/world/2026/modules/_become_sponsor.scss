@@ -108,10 +108,8 @@
   // ── Right column: carousel ────────────────────────────────
   &__carousel {
     flex: 1;
-    position: relative;
-    border-radius: 3px;
-    overflow: hidden;
-    isolation: isolate;
+    @include neon-overlay-shell;
+    @include neon-overlay-inner-layer;
     border: 1px solid rgba(255, 255, 255, 0.75);
 
     @include neon-glow;
@@ -132,15 +130,6 @@
       z-index: 1;
     }
 
-    // Keep inner glow visible above the image slides.
-    &::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      z-index: 2;
-      @include neon-glow-inner;
-    }
   }
 
   &__slides {
