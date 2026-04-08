@@ -46,7 +46,7 @@
   transition: color 0.2s ease;
 
   &:hover {
-    color: $orange;
+    color: $white;
   }
 }
 
@@ -62,11 +62,11 @@
 }
 
 .faq-question--open {
-  color: $orange;
+  color: $white;
 
   .faq-chevron {
     transform: rotate(180deg);
-    border-top-color: $orange;
+    border-top-color: $white;
   }
 }
 
@@ -79,6 +79,10 @@
   &--open {
     grid-template-rows: 1fr;
     opacity: 1;
+
+    .faq-answer__inner {
+      color: $white;
+    }
   }
 
   &__inner {
