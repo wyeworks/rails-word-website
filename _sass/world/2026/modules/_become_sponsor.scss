@@ -1,11 +1,3 @@
-@keyframes sponsor-slide-fade {
-  0%    { opacity: 0; }
-  3%    { opacity: 1; }
-  20%   { opacity: 1; }
-  23%   { opacity: 0; }
-  100%  { opacity: 0; }
-}
-
 .become-sponsor {
   padding: 48px 89px 96px;
 
@@ -140,6 +132,8 @@
     min-height: 400px;
     overflow: hidden;
     border-radius: 3px;
+    --sponsor-slide-step: 4s;
+    --sponsor-slide-overlap: 0.6s;
   }
 
   &__slide {
@@ -149,19 +143,21 @@
     height: 100%;
     object-fit: cover;
     opacity: 0;
-    animation: sponsor-slide-fade 20s linear infinite;
+    animation-name: sponsor-slide-fade;
+    animation-duration: calc(var(--sponsor-slide-count, 1) * var(--sponsor-slide-step));
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-delay: calc((var(--sponsor-slide-index, 1) - 1) * var(--sponsor-slide-step) - var(--sponsor-slide-overlap));
+  }
 
-    // Negative delay on slide 1 = already at full opacity when page loads.
-    // Each subsequent slide is offset by 4s (20s / 5 slides).
-    @for $i from 1 through 5 {
-      &:nth-child(#{$i}) { animation-delay: #{($i - 1) * 4 - 0.6}s; }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
+  @media (prefers-reduced-motion: reduce) {
+    &__slide {
       animation: none;
       opacity: 0;
+    }
 
-      &:first-child { opacity: 1; }
+    &__slide--first {
+      opacity: 1;
     }
   }
 }
@@ -194,4 +190,23 @@
   0%   { transform: translateY(0)     rotate(-1deg); }
   50%  { transform: translateY(-10px) rotate(1deg); }
   100% { transform: translateY(0)     rotate(-1deg); }
+}
+
+@keyframes sponsor-slide-fade {
+  0% {
+    opacity: 0;
+  }
+
+  3% {
+    opacity: 1;
+  }
+
+  20% {
+    opacity: 1;
+  }
+
+  23%,
+  100% {
+    opacity: 0;
+  }
 }

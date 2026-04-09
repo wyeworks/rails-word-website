@@ -1,3 +1,5 @@
+{% assign sponsor_photos = "rw-photo-10.jpg,rw-photo-1.jpg,rw-photo-2.jpg,rw-photo-3.jpg,rw-photo-4.jpg,rw-photo-5.jpg,rw-photo-6.jpg,rw-photo-7.jpg,rw-photo-8.jpg,rw-photo-9.jpg" | split: "," %}
+
 <section class="become-sponsor">
   <div class="become-sponsor__inner">
 
@@ -13,21 +15,18 @@
 
     <!-- Right column: image carousel -->
     <div class="become-sponsor__carousel">
-      <div class="become-sponsor__slides" role="img" aria-label="Rails World 2026 sponsor photos">
-        <img src="/assets/world/2026/images/sponsors/rw-photo-10.jpg" alt="" class="become-sponsor__slide" loading="lazy">
-        <img src="/assets/world/2026/images/sponsors/rw-photo-1.jpg" alt="" class="become-sponsor__slide" loading="lazy">
-        <img src="/assets/world/2026/images/sponsors/rw-photo-2.jpg" alt="" class="become-sponsor__slide" loading="lazy">
-        <img src="/assets/world/2026/images/sponsors/rw-photo-3.jpg" alt="" class="become-sponsor__slide" loading="lazy">
-        <img src="/assets/world/2026/images/sponsors/rw-photo-4.jpg" alt="" class="become-sponsor__slide" loading="lazy">
-        <img src="/assets/world/2026/images/sponsors/rw-photo-5.jpg" alt="" class="become-sponsor__slide" loading="lazy">
-        <img src="/assets/world/2026/images/sponsors/rw-photo-6.jpg" alt="" class="become-sponsor__slide" loading="lazy">
-        <img src="/assets/world/2026/images/sponsors/rw-photo-7.jpg" alt="" class="become-sponsor__slide" loading="lazy">
-        <img src="/assets/world/2026/images/sponsors/rw-photo-8.jpg" alt="" class="become-sponsor__slide" loading="lazy">
-        <img src="/assets/world/2026/images/sponsors/rw-photo-9.jpg" alt="" class="become-sponsor__slide" loading="lazy">
+      <div class="become-sponsor__slides" role="img" aria-label="Rails World 2026 sponsor photos" style="--sponsor-slide-count: {{ sponsor_photos.size }};">
+        {% for photo in sponsor_photos %}
+          <img
+            src="/assets/world/2026/images/sponsors/{{ photo }}"
+            alt=""
+            class="become-sponsor__slide{% if forloop.first %} become-sponsor__slide--first{% endif %}"
+            style="--sponsor-slide-index: {{ forloop.index }};"
+            loading="lazy"
+          >
+        {% endfor %}
       </div>
     </div>
 
   </div>
 </section>
-
-
