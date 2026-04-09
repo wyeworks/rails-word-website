@@ -36,18 +36,6 @@
     font-weight: 400;
     text-transform: uppercase;
     padding: 24px 0;
-
-    &:hover {
-      color: $white;
-    }
-  }
-
-  .faq-question--open {
-    color: $white;
-
-    .faq-chevron {
-      border-top-color: $white;
-    }
   }
 
   .faq-answer {
