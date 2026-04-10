@@ -4,7 +4,7 @@
     - question: "What is Rails World? Who is it for?"
       answer: "Rails World is a conference focused on the Ruby on Rails framework. It brings together developers, engineers, and enthusiasts, as well as the Rails maintainers from around the world to discuss and explore the latest trends, techniques, and advancements in Rails development. It is designed for anyone with an interest in Ruby on Rails, from beginners to experienced professionals."
     - question: "Does Rails World have a Code of Conduct?"
-      answer: "You bet we do. Please read the <a href=\"/world/2026/code-of-conduct\">Code of Conduct here</a>. We are committed to making Rails World a safe space for all. If you have any issues please reach out to <a href=\"mailto:world@rubyonrails.org\">world@rubyonrails.org</a>."
+      answer: "You bet we do. Please read the <a href=\"/world/conduct\">Code of Conduct here</a>. We are committed to making Rails World a safe space for all. If you have any issues please reach out to <a href=\"mailto:world@rubyonrails.org\">world@rubyonrails.org</a>."
     - question: "Will Rails World be livestreamed?"
       answer: "We would like to have a livestream this year, but that still remains TBD. However, we always publish the Opening Keynote within hours of it taking place. All other sessions will follow quickly and be online within two weeks after Rails World. Subscribe to be informed when the videos get published."
     - question: "Will there be a conference app or chat?"
