@@ -91,6 +91,13 @@
     justify-content: center;
     align-items: center;
     gap: 28px 24px;
+
+    @include media(MobileScreens) {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      justify-items: center;
+      gap: 20px 16px;
+    }
   }
 
   &__item {
@@ -159,13 +166,15 @@
   &__item--members {
     padding: 10px 14px;
     flex: 0 1 180px;
+    min-width: 0;
 
     @include media(TabletScreens) {
       flex-basis: 160px;
     }
 
     @include media(MobileScreens) {
-      flex-basis: 140px;
+      flex-basis: auto;
+      width: 100%;
     }
   }
 
