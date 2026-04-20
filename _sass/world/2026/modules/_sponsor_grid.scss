@@ -75,6 +75,16 @@
     }
   }
 
+  &__logos--silver {
+    @include media(MobileScreens) {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      align-items: center;
+      justify-items: center;
+      gap: 16px 10px;
+    }
+  }
+
   &__logos--other {
     @include media(MobileScreens) {
       display: grid;
@@ -134,13 +144,13 @@
   }
 
   &__item--gold img {
-    max-height: 38px;
+    max-height: 36px;
     width: 100%;
-    max-width: 220px;
+    max-width: 210px;
 
     @include media(MobileScreens) {
-      max-height: 34px;
-      max-width: 180px;
+      max-height: 32px;
+      max-width: 170px;
     }
   }
 
@@ -156,10 +166,10 @@
   &__item--silver img,
   &__item--other img,
   &__item--members img {
-    max-height: 36px;
+    max-height: 46px;
 
     @include media(MobileScreens) {
-      max-height: 28px;
+      max-height: 32px;
     }
   }
 
@@ -181,5 +191,42 @@
   &__item--judoscale img {
     width: 100%;
     max-width: 240px;
+  }
+
+  &__item--rwx img {
+    max-height: 28px;
+    max-width: 190px;
+  }
+
+  &__item--test-double img {
+    max-height: 32px;
+    max-width: 200px;
+  }
+
+  &__item--37signals img,
+  &__item--intercom img,
+  &__item--planning-center img {
+    max-height: 46px;
+  }
+
+  &__item--sorcer img,
+  &__item--buzzsprout img {
+    max-height: 30px;
+  }
+
+  &__item--cedarcode img,
+  &__item--typesense img
+  &__item--planet-argon img,
+  &__item--saeloun img {
+    max-height: 35px;
+  }
+
+  &__item--judoscale img {
+    filter: none;
+    max-height: 35px;
+  }
+
+  &__item--jetbrains img {
+    filter: brightness(0) invert(1);
   }
 }
