@@ -1,10 +1,10 @@
 // Sponsor grid — "Thank you to our sponsors" — Rails World 2026
 
 .sponsor-grid {
-  padding: 48px 89px 96px;
+  padding: 48px 89px 58px;
 
   @include media(MobileAndTabletScreens) {
-    padding: 40px 24px 60px;
+    padding: 40px 24px 58px;
   }
 
   &__inner {
@@ -214,12 +214,12 @@
     max-height: 30px;
   }
 
-  &__item--cedarcode img,
-  &__item--typesense img
-  &__item--planet-argon img,
-  &__item--saeloun img {
-    max-height: 35px;
-  }
+&__item--cedarcode img,
+&__item--typesense img,
+&__item--planet-argon img,
+&__item--saeloun img {
+  max-height: 35px;
+}
 
   &__item--judoscale img {
     filter: none;

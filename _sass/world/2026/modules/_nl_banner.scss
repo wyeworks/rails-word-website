@@ -75,6 +75,13 @@
       font-weight: $font-weight-600;
       color: $white;
     }
+
+    a {
+      color: $white;
+      font-weight: $font-weight-600;
+      text-decoration: underline;
+      text-underline-offset: 0.15em;
+    }
   }
 
   &__btn {
@@ -83,6 +90,8 @@
     align-items: center;
     justify-content: center;
     align-self: stretch;
+    box-sizing: border-box;
+    height: 60px;
     padding: 0 32px;
     margin: 25px 0;  // card padding (35px) + this margin (25px) = 60px from card border
     border: 1.5px solid $off-white;
@@ -101,10 +110,44 @@
 
     @include media(MobileAndTabletScreens) {
       align-self: stretch;
+      height: auto;
       margin: 0;
       padding: 16px 24px;
       text-align: center;
       white-space: normal;
+    }
+  }
+
+  &--code-of-conduct {
+    padding-top: 27px;
+    padding-bottom: 27px;
+    margin-bottom: 58px;
+
+    .nl-banner__text {
+      flex-basis: 760px;
+    }
+
+    .nl-banner__subtitle + .nl-banner__subtitle {
+      margin-top: 12px;
+    }
+
+    .nl-banner__btn {
+      align-self: center;
+      margin: 0;
+      padding: 0 32px;
+
+      @include media(MobileAndTabletScreens) {
+        align-self: stretch;
+        padding: 16px 24px;
+      }
+    }
+
+    @include media(MobileAndTabletScreens) {
+      padding-top: 24px;
+
+      .nl-banner__text {
+        flex-basis: auto;
+      }
     }
   }
 }
