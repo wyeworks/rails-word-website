@@ -150,4 +150,10 @@
       }
     }
   }
+
+  &--content-wide {
+    .nl-banner__inner {
+      max-width: 1482px;
+    }
+  }
 }
